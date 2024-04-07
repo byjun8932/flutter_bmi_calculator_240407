@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../result/result_screen.dart';
 
@@ -16,8 +17,17 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   void dispose() {
+    save();
+
     _heightController.dispose();
     _weightController.dispose();
+  }
+
+  Future save() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setDouble('height', double.parse(_heightController.text));
+    await prefs.setDouble('w eight', double.parse(_weightController.text));
+
   }
 
   @override
