@@ -16,7 +16,7 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('비만도 계산Rl'), // Text 같은 곳에서 변수가 들어가면 Const 를 안쓴다, 반대의 경우는 쓴다.
+          title: const Text('비만도 계산기'), // Text 같은 곳에서 변수가 들어가면 Const 를 안쓴다, 반대의 경우는 쓴다.
           backgroundColor: Colors.transparent, // 투명한 색상으로 설정
           flexibleSpace: Container(
             decoration: BoxDecoration(
@@ -75,7 +75,7 @@ class _MainScreenState extends State<MainScreen> {
                         context,
                         MaterialPageRoute(
                             builder: (container) =>
-                                const ResultScreen(height: 224, weight: 34)),
+                                const ResultScreen(height: 223, weight: 13)),
                       );
                     },
                     child: const Text('결과')),
