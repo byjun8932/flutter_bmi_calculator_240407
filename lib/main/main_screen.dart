@@ -17,15 +17,13 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   void initState() {
-
     super.initState();
 
-    load();
+    load(); // 특정 생명주기의 메서드를 재정의 (오버라이딩)
   }
 
   @override
   void dispose() {
-
     _heightController.dispose();
     _weightController.dispose();
   }
@@ -42,7 +40,8 @@ class _MainScreenState extends State<MainScreen> {
     final double? height = prefs.getDouble('height');
     final double? weight = prefs.getDouble('weight');
 
-    if(height != null && weight != null) { // 여기서 debug mode 사용
+    if (height != null && weight != null) {
+      // 여기서 debug mode 사용
       _heightController.text = '$height';
       _weightController.text = '$weight';
       print('키: $height, 몸무게 $weight');
