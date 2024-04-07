@@ -17,7 +17,6 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   void dispose() {
-    save();
 
     _heightController.dispose();
     _weightController.dispose();
@@ -96,6 +95,8 @@ class _MainScreenState extends State<MainScreen> {
 
                       final height = _heightController.text;
 
+                      save();
+                      
                       Navigator.push(
                         // Live template 만들기
                         context,
