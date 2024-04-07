@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../result/result_screen.dart';
+
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
 
@@ -14,7 +16,7 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('비만도 계산기'),
+          title: const Text('비만도 계산Rl'),
           backgroundColor: Colors.transparent, // 투명한 색상으로 설정
           flexibleSpace: Container(
             decoration: BoxDecoration(
@@ -66,9 +68,17 @@ class _MainScreenState extends State<MainScreen> {
                 ),
                 ElevatedButton(
                     onPressed: () {
-                      if (_formkey.currentState?.validate() ?? false) {}
+                      if (_formkey.currentState?.validate() ?? false) {
+                        return;
+                      }
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (container) =>
+                                const ResultScreen(height: 224, weight: 34)),
+                      );
                     },
-                    child: Text('결과')),
+                    child: const Text('결과')),
               ],
             ),
           ),
