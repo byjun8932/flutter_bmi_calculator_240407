@@ -71,7 +71,7 @@ class _MainScreenState extends State<MainScreen> {
                       if (_formkey.currentState?.validate() ?? false) {
                         return;
                       }
-                      Navigator.push(
+                      Navigator.push( // Live template 만들기
                         context,
                         MaterialPageRoute(
                             builder: (container) =>
