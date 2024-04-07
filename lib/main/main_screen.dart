@@ -10,7 +10,7 @@ class MainScreen extends StatefulWidget {
   State<MainScreen> createState() => _MainScreenState();
 }
 
-class _MainScreenState extends State<MainScreen> {
+class _MainScreenState extends State<MainScreen> { // _MainScreenState는 State를 상속하고, State는 클래스의 initstate() , dispose() 같은 메서드를 포함한다
   final _formkey = GlobalKey<FormState>();
   final _heightController = TextEditingController();
   final _weightController = TextEditingController();
