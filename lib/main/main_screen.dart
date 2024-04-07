@@ -11,13 +11,23 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   final _formkey = GlobalKey<FormState>();
+  final _heightController = TextEditingController();
+  final _weightController = TextEditingController();
+
+  @override
+  void dispose() {
+    _heightController.dispose();
+    _weightController.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('비만도 계산기'), // Text 같은 곳에서 변수가 들어가면 Const 를 안쓴다, 반대의 경우는 쓴다.
-          backgroundColor: Colors.transparent, // 투명한 색상으로 설정
+          title: const Text('비만도 계산기'),
+          // Text 같은 곳에서 변수가 들어가면 Const 를 안쓴다, 반대의 경우는 쓴다.
+          backgroundColor: Colors.transparent,
+          // 투명한 색상으로 설정
           flexibleSpace: Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
@@ -39,6 +49,7 @@ class _MainScreenState extends State<MainScreen> {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 TextFormField(
+                  controller: _heightController,
                   decoration: const InputDecoration(
                       border: OutlineInputBorder(), hintText: '키'),
                   keyboardType: TextInputType.number,
@@ -53,6 +64,7 @@ class _MainScreenState extends State<MainScreen> {
                   height: 8,
                 ),
                 TextFormField(
+                  controller: _weightController,
                   decoration: const InputDecoration(
                       border: OutlineInputBorder(), hintText: '몸무게'),
                   keyboardType: TextInputType.number,
@@ -68,14 +80,20 @@ class _MainScreenState extends State<MainScreen> {
                 ),
                 ElevatedButton(
                     onPressed: () {
-                      if (_formkey.currentState?.validate() ?? false) {
+                      if (_formkey.currentState?.validate() == false ?? false) {
                         return;
                       }
-                      Navigator.push( // Live template 만들기
+
+                      final height = _heightController.text;
+
+                      Navigator.push(
+                        // Live template 만들기
                         context,
                         MaterialPageRoute(
-                            builder: (container) =>
-                                const ResultScreen(height: 223, weight: 13)),
+                            builder: (container) => ResultScreen(
+                                  height: double.parse(_heightController.text),
+                                  weight: double.parse(_weightController.text),
+                                )),
                       );
                     },
                     child: const Text('결과')),
