@@ -32,9 +32,9 @@ class _MainScreenState extends State<MainScreen> {
 
   Future save() async {
     // 비동기와 동기에 대해서 알아보고 넘어가라...
-    final prefs = await SharedPreferences.getInstance();
+    final prefs = await SharedPreferences.getInstance(); // 여기서 break point
     await prefs.setDouble('height', double.parse(_heightController.text));
-    await prefs.setDouble('w eight', double.parse(_weightController.text));
+    await prefs.setDouble('weight', double.parse(_weightController.text));
   }
 
   Future load() async {
@@ -42,7 +42,7 @@ class _MainScreenState extends State<MainScreen> {
     final double? height = prefs.getDouble('height');
     final double? weight = prefs.getDouble('weight');
 
-    if(height != null && weight != null) {
+    if(height != null && weight != null) { // 여기서 debug mode 사용
       _heightController.text = '$height';
       _weightController.text = '$weight';
       print('키: $height, 몸무게 $weight');
