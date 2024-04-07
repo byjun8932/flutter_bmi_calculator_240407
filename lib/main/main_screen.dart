@@ -16,6 +16,14 @@ class _MainScreenState extends State<MainScreen> {
   final _weightController = TextEditingController();
 
   @override
+  void initState() {
+
+    super.initState();
+
+    load();
+  }
+
+  @override
   void dispose() {
 
     _heightController.dispose();
@@ -27,6 +35,18 @@ class _MainScreenState extends State<MainScreen> {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setDouble('height', double.parse(_heightController.text));
     await prefs.setDouble('w eight', double.parse(_weightController.text));
+  }
+
+  Future load() async {
+    final prefs = await SharedPreferences.getInstance();
+    final double? height = prefs.getDouble('height');
+    final double? weight = prefs.getDouble('weight');
+
+    if(height != null && weight != null) {
+      _heightController.text = '$height';
+      _weightController.text = '$weight';
+      print('키: $height, 몸무게 $weight');
+    }
   }
 
   @override
@@ -96,7 +116,7 @@ class _MainScreenState extends State<MainScreen> {
                       final height = _heightController.text;
 
                       save();
-                      
+
                       Navigator.push(
                         // Live template 만들기
                         context,
