@@ -24,10 +24,10 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   Future save() async {
+    // 비동기와 동기에 대해서 알아보고 넘어가라...
     final prefs = await SharedPreferences.getInstance();
     await prefs.setDouble('height', double.parse(_heightController.text));
     await prefs.setDouble('w eight', double.parse(_weightController.text));
-
   }
 
   @override
